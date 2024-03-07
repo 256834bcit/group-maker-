@@ -1,0 +1,59 @@
+import random
+students= ["james", "adam", "cole", "brian", "david", "john", "chandler", "pearson", "dwane", "gavin", "ryan", "shahood", "chris", "aiden", "jaiden", "leo", "marcos", "muntag", "robert", "jacob"]
+random.shuffle(students) #shuffle list so groups are "random"
+ex = False #declare bool for if exclude is going to happen 
+def pairs(): #pair function 
+    i = 0
+    while (i <= 19): # loop for number of groups 
+        x=(i/2)+1
+        print("group_", x) #print group name 
+        print(students[i], students[i+1]) #print students names
+        i += 2 #increment 
+def trios(): #trio function 
+    i = 0
+    while (i < 18):# loop for number of groups 
+        x=(i/3)+1 #findgroup name 
+        print("group_", x) #print group name 
+        print(students[i], students[i+1], students[i+2]) # print name of students 
+        i += 3 #increment 
+    print("group_", x+1)
+    print(students[i])
+    print(students[i+1])
+def quads():#groups of four
+    i = 0
+    while (i <= 16):# loop for number of groups 
+        x=(i/4)+1
+        print("group_", x) #print name of group 
+        print(students[i], students[i+1], students[i+2], students[i+3]) #print names of students 
+        i += 4 #increment 
+def exclude():#keeps students separated as necessary
+    excount = 1 
+    distance = 1
+    exclusion = True
+    while (exclusion == True):
+        exname = str(input("name the student to be excluded ")) #ask if exclude 
+        students.index(exname) #take input 
+        exclude1 = students.pop(students.index(exname))
+        students.insert(distance , exclude1) #place student in a spot 
+        excount += 1 #increment 
+        distance += 4 #increment 
+        r = str(input("is there another student to be excluded ")) # ask for next student 
+        if (r == "yes"): #run again 
+            exclusion = True
+        if (r == "no"): #move on 
+            exclusion = False
+def main():
+    e = str(input("do any students need to be kept from working together?")) # check in exclude will run 
+    if (e == "yes"):
+        exclude()       
+    c = int(input("would you like to split students into groups of 2, 3, or 4?")) #ask for number of students in each groups 
+    if (c==2):
+        pairs()
+    elif (c==3):
+        trios()
+    elif (c==4):
+        quads()
+    else :
+        print("please input 2, 3, or 4") # ask again for invalid input
+        main()
+main()
